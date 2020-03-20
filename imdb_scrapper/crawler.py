@@ -19,4 +19,6 @@ def crawl(query_type, query):
         return None
     else:
         df = pd.read_html(search_url)
-        return df[0][1]
+        results = df[0][1]
+        data =  set(results.to_list())
+        return data

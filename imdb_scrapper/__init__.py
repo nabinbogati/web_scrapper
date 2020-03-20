@@ -1,7 +1,10 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from imdb_scrapper.config import Config
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "9832891c9d2fd0cb5885ee7cf4510558"
+app.config.from_object(Config)
+db = SQLAlchemy(app)
 
 from imdb_scrapper import routes
 

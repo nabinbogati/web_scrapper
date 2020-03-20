@@ -23,9 +23,15 @@
             <div class="content-section border border-success p-4">
                 <p class="text-center bg-success p-2">Search Results</p>
                 {% for data in data %}
-                <ul class="list-group"></ul>
-                    <li class="list-group-item text-center mb-2 ml-4 mr-4">{{ data }}</li>
-                </ul>  
+                    {% if data.results %}
+                        <ul class="list-group"></ul>
+                            <li class="list-group-item text-center mb-2 ml-4 mr-4">{{ data.results }}</li>
+                        </ul>  
+                    {% else %}
+                        <ul class="list-group"></ul>
+                            <li class="list-group-item text-center mb-2 ml-4 mr-4">{{ data }}</li>
+                        </ul>
+                    {% endif %}
                 {% endfor %}
             </div>
         {% endif %}
