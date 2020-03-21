@@ -4,6 +4,7 @@ from imdb_scrapper import app, db
 from imdb_scrapper.forms import SearchForm
 from imdb_scrapper.crawler import crawl
 from imdb_scrapper.models import Imdb
+from datetime import datetime, timedelta
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -14,6 +15,10 @@ def index():
         if form.validate_on_submit():
             key_word = form.search.data.replace(' ', '').lower()
             cat = form.categories.data
+            expiry_date = datetime.now() - timedelta(hours=1)
+
+            db.engine.execute("DELETE FROM imdb WHERE date_added <= datetime('now', '-60 minute')")
+
             db_result = Imdb.query.filter_by(keyword=key_word, category=cat).all()
             if db_result:
                 print("From Database")
