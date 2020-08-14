@@ -1,4 +1,4 @@
-## IMDB_SCRAPPER
+## IMDB_SCRAPER
 
 A web application written in flask microframework scrapes data from [IMDB](imdb.com) using imdb search form.
 
